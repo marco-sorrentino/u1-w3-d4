@@ -6,19 +6,21 @@ const insertList = (event) => {
     const newDiv = document.createElement("div");
     newDiv.classList.add("element-list");
     newDiv.innerText = textInput;
+    newDiv.onclick = addSelectedClass;
     document.getElementsByClassName("container-list")[0].appendChild(newDiv);
     document.getElementById("searchInput").value = "";
   }
 };
 
-const doneList = (event) => {
-  const selected = document.querySelectorAll("element-list");
-  const verifyColor = window.getComputedStyle(selected).backgroundColor;
-  if (verifyColor === rgb(255, 255, 255)) {
-    document.document.querySelectorAll("element-list").style.backgroundColor =
-      "green";
-  } else {
-    document.document.querySelectorAll("element-list").style.backgroundColor =
-      "white";
-  }
+const removeItem = () => {
+  console.log("click");
+  const selectedElement = document.querySelectorAll(".selected");
+  console.log(selectedElement);
+  const list = document.querySelector(".container-list");
+  selectedElement.forEach((element) => list.removeChild(element));
+};
+
+const addSelectedClass = (event) => {
+  const clickedElement = event.target;
+  clickedElement.classList.toggle("selected");
 };
